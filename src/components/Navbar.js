@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
+import { GithubContext } from '../context/context';
 
 const Navbar = () => {
+  const data = React.useContext(GithubContext);
   return <h2>navbar component</h2>;
 };
 

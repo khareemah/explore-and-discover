@@ -5,7 +5,55 @@ import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
 const UserInfo = () => {
-  return <h2>user info component</h2>;
+  const { githubUser } = React.useContext(GithubContext);
+  const { public_repos, public_gists, followers, following } = githubUser;
+  const userData = [
+    {
+      id: 1,
+      icon: <GoRepo className="icon" />,
+      color: 'pink',
+      label: 'repo',
+      value: public_repos,
+    },
+    {
+      id: 2,
+      icon: <FiUsers className="icon" />,
+      color: 'green',
+      label: 'followers',
+      value: followers,
+    },
+    {
+      id: 3,
+      icon: <FiUserPlus className="icon" />,
+      color: 'purple',
+      label: 'following',
+      value: following,
+    },
+    {
+      id: 4,
+      icon: <GoGist className="icon" />,
+      color: 'yellow',
+      label: 'gist',
+      value: public_gists,
+    },
+  ];
+  return (
+    <section>
+      <Wrapper className="section-center">
+        {userData.map(({ id, icon, color, label, value }) => {
+          return (
+            <article key={id} className="item">
+              <span className={color}>{icon}</span>
+              <div>
+                <h3>{value}</h3>
+                <p>{label}</p>
+              </div>
+            </article>
+          );
+        })}
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.section`
